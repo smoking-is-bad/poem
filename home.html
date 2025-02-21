@@ -17,7 +17,6 @@
     <input type="text" id="fullName" required>
     
     <label for="birthDate">Ngày sinh:</label>
-    <!-- Sử dụng input type="date" để tiện nhập -->
     <input type="date" id="birthDate" required>
     
     <button type="submit">Tính toán</button>
@@ -109,13 +108,22 @@
       
       const fullName = document.getElementById('fullName').value;
       const birthDateValue = document.getElementById('birthDate').value;
-      if (!birthDateValue) return;
+      
+      console.log("Full Name:", fullName);
+      console.log("Birth Date Input Value:", birthDateValue);
+      
+      if (!birthDateValue) {
+        console.error("Ngày sinh không hợp lệ!");
+        return;
+      }
       
       // Lấy thông tin ngày, tháng, năm từ input date (định dạng yyyy-mm-dd)
       let birthDate = new Date(birthDateValue);
       let day = birthDate.getDate();
       let month = birthDate.getMonth() + 1; // Tháng trong JS bắt đầu từ 0
       let year = birthDate.getFullYear();
+      
+      console.log("Parsed Date:", { day, month, year });
       
       // Tính các chỉ số
       const lifePath = calculateLifePath(day, month, year);
@@ -125,6 +133,14 @@
       const peakNumber = calculatePeakNumber(birthdayNumber, lifePath);
       const lifeCycleNumber = calculateLifeCycleNumber(year);
       const destinyNumber = calculateDestinyNumber(fullName);
+      
+      console.log("Life Path Number:", lifePath);
+      console.log("Birthday Number:", birthdayNumber);
+      console.log("Attitude Number:", attitudeNumber);
+      console.log("Maturity Number:", maturityNumber);
+      console.log("Peak Number:", peakNumber);
+      console.log("Life Cycle Number:", lifeCycleNumber);
+      console.log("Destiny Number:", destinyNumber);
       
       // Hiển thị kết quả
       let resultHTML = `
